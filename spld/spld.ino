@@ -121,8 +121,8 @@ void stopMotor()
 void stopServo()
 {
   Serial.println("MOTOR STOP");
-  servo1.write(pos);
-  servo2.write(pos);
+  servo1.write(90);
+  servo2.write(90);
 }
 
 void loop()
