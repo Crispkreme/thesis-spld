@@ -104,8 +104,8 @@ void backwardDirection(int speed)
   Serial.println("MOTOR BACKWARD");
   if(speed > 0){
     out1 = map(speed, 0, 1023, 0, 255);
-    analogWrite(RPWM, out1);
-    analogWrite(LPWM, 0);
+    analogWrite(RPWM, 0);
+    analogWrite(LPWM, out1);
   } else {
     stopMotor();
   }
