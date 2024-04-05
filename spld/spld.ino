@@ -87,25 +87,27 @@ void rightDirection()
   }
 }
 
-void forwardDirection()
+void forwardDirection(int speed)
 {
   Serial.println("MOTOR FORWARD");
-  pot = 600;
-  if(pot > 512){
-    out1 = map(pot,512,1023,0,255);
-    analogWrite(LPWM, 0);
-    analogWrite(RPWM, out1);
+  if(speed > 0){
+    out1 = map(speed, 0, 1023, 0, 255);
+    analogWrite(LPWM, out1);
+    analogWrite(RPWM, 0);
+  } else {
+    stopMotor();
   }
 }
 
-void backwardDirection()
+void backwardDirection(int speed)
 {
   Serial.println("MOTOR BACKWARD");
-  pot = 600;
-  if(pot > 512){
-    out1 = map(pot,512,1023,0,255);
-    analogWrite(RPWM, 0);
-    analogWrite(LPWM, out1);
+  if(speed > 0){
+    out1 = map(speed, 0, 1023, 0, 255);
+    analogWrite(RPWM, out1);
+    analogWrite(LPWM, 0);
+  } else {
+    stopMotor();
   }
 }
 
@@ -152,12 +154,12 @@ void loop()
 
   if (yValue2 < UP_THRESHOLD) {
 
-    forwardDirection();
+    forwardDirection(yValue2);
     Serial.println("MOTOR FORWARD");
 
   } else if (yValue2 > DOWN_THRESHOLD) {
 
-    backwardDirection();
+    backwardDirection(yValue2);
     Serial.println("MOTOR BACKWARD");
 
   } else {
